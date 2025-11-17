@@ -1,0 +1,6 @@
+# Robot Framework screenshotit
+selenium-screenshot*.png
+*.png
+output.xml
+log.html
+report.html

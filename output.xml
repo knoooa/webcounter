@@ -1,149 +1,439 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.14.0 on darwin)" generated="2025-11-17T18:38:15.011124" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3.2 (Python 3.14.0 on darwin)" generated="2025-11-17T18:43:08.201787" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="/Users/nooa/Desktop/ohtu2025/webcounter/webcounter/src/tests">
 <suite id="s1-s1" name="Increment" source="/Users/nooa/Desktop/ohtu2025/webcounter/webcounter/src/tests/increment.robot">
 <kw name="Open And Configure Browser" owner="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-11-17T18:43:08.324486" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x10bcf56a0&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-11-17T18:43:08.324332" elapsed="0.000176"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--incognito</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-11-17T18:43:08.324575" elapsed="0.000080"/>
+</kw>
+<status status="PASS" start="2025-11-17T18:43:08.323932" elapsed="0.000752"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2025-11-17T18:43:08.324765" elapsed="0.000015"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--private-window</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" start="2025-11-17T18:43:08.324827" elapsed="0.000011"/>
+</kw>
+<status status="NOT RUN" start="2025-11-17T18:43:08.324711" elapsed="0.000151"/>
+</branch>
+<status status="PASS" start="2025-11-17T18:43:08.323911" elapsed="0.000973"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0.05 seconds</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2025-11-17T18:43:08.325014" elapsed="0.000103"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-11-17T18:43:08.325155" elapsed="0.000054"/>
+</kw>
+<status status="PASS" start="2025-11-17T18:43:08.324920" elapsed="0.000308"/>
+</branch>
+<branch type="ELSE">
 <kw name="Set Selenium Speed" owner="SeleniumLibrary">
 <arg>${DELAY}</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2025-11-17T18:38:15.127423" elapsed="0.000168"/>
+<status status="NOT RUN" start="2025-11-17T18:43:08.325283" elapsed="0.000011"/>
 </kw>
+<status status="NOT RUN" start="2025-11-17T18:43:08.325244" elapsed="0.000066"/>
+</branch>
+<status status="PASS" start="2025-11-17T18:43:08.324910" elapsed="0.000413"/>
+</if>
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:15.127792" level="INFO">Opening browser 'safari' to base url 'None'.</msg>
+<msg time="2025-11-17T18:43:08.325474" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<msg time="2025-11-17T18:43:09.032075" level="WARN">The chromedriver version (126.0.6478.55) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (142.0.7444.162); currently, chromedriver 142.0.7444.162 is recommended for chrome 142.*, so it is advised to delete the driver in PATH and retry</msg>
+<msg time="2025-11-17T18:43:10.553351" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg time="2025-11-17T18:43:10.553701" level="FAIL">SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102707a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102700328 chromedriver + 4358952
+2   chromedriver                        0x000000010231cafc chromedriver + 281340
+3   chromedriver                        0x0000000102350e30 chromedriver + 495152
+4   chromedriver                        0x0000000102350100 chromedriver + 491776
+5   chromedriver                        0x000000010234b670 chromedriver + 472688
+6   chromedriver                        0x00000001023485f4 chromedriver + 460276
+7   chromedriver                        0x0000000102387a6c chromedriver + 719468
+8   chromedriver                        0x0000000102353ed0 chromedriver + 507600
+9   chromedriver                        0x00000001023548a8 chromedriver + 510120
+10  chromedriver                        0x00000001026cf3a0 chromedriver + 4158368
+11  chromedriver                        0x00000001026d3e04 chromedriver + 4177412
+12  chromedriver                        0x00000001026b5060 chromedriver + 4051040
+13  chromedriver                        0x00000001026d46f0 chromedriver + 4179696
+14  chromedriver                        0x00000001026a8060 chromedriver + 3997792
+15  chromedriver                        0x00000001026f20b8 chromedriver + 4300984
+16  chromedriver                        0x00000001026f2234 chromedriver + 4301364
+17  chromedriver                        0x00000001026fff20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8
+</msg>
 <arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-11-17T18:38:15.127677" elapsed="0.952784"/>
+<status status="FAIL" start="2025-11-17T18:43:08.325362" elapsed="2.232580">SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102707a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102700328 chromedriver + 4358952
+2   chromedriver                        0x000000010231cafc chromedriver + 281340
+3   chromedriver                        0x0000000102350e30 chromedriver + 495152
+4   chromedriver                        0x0000000102350100 chromedriver + 491776
+5   chromedriver                        0x000000010234b670 chromedriver + 472688
+6   chromedriver                        0x00000001023485f4 chromedriver + 4...
+    [ Message content over the limit has been removed. ]
+...hromedriver                        0x00000001023548a8 chromedriver + 510120
+10  chromedriver                        0x00000001026cf3a0 chromedriver + 4158368
+11  chromedriver                        0x00000001026d3e04 chromedriver + 4177412
+12  chromedriver                        0x00000001026b5060 chromedriver + 4051040
+13  chromedriver                        0x00000001026d46f0 chromedriver + 4179696
+14  chromedriver                        0x00000001026a8060 chromedriver + 3997792
+15  chromedriver                        0x00000001026f20b8 chromedriver + 4300984
+16  chromedriver                        0x00000001026f2234 chromedriver + 4301364
+17  chromedriver                        0x00000001026fff20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8</status>
 </kw>
-<status status="PASS" start="2025-11-17T18:38:15.127054" elapsed="0.953634"/>
+<status status="FAIL" start="2025-11-17T18:43:08.323802" elapsed="2.234386">SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102707a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102700328 chromedriver + 4358952
+2   chromedriver                        0x000000010231cafc chromedriver + 281340
+3   chromedriver                        0x0000000102350e30 chromedriver + 495152
+4   chromedriver                        0x0000000102350100 chromedriver + 491776
+5   chromedriver                        0x000000010234b670 chromedriver + 472688
+6   chromedriver                        0x00000001023485f4 chromedriver + 4...
+    [ Message content over the limit has been removed. ]
+...hromedriver                        0x00000001023548a8 chromedriver + 510120
+10  chromedriver                        0x00000001026cf3a0 chromedriver + 4158368
+11  chromedriver                        0x00000001026d3e04 chromedriver + 4177412
+12  chromedriver                        0x00000001026b5060 chromedriver + 4051040
+13  chromedriver                        0x00000001026d46f0 chromedriver + 4179696
+14  chromedriver                        0x00000001026a8060 chromedriver + 3997792
+15  chromedriver                        0x00000001026f20b8 chromedriver + 4300984
+16  chromedriver                        0x00000001026f2234 chromedriver + 4301364
+17  chromedriver                        0x00000001026fff20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8</status>
 </kw>
 <test id="s1-s1-t1" name="At start the counter is zero" line="7">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:16.081488" level="INFO">Opening url 'http://localhost:5001'</msg>
-<arg>${HOME_URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-11-17T18:38:16.081317" elapsed="0.528599"/>
-</kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:17.123031" level="INFO">Page title is 'Laskuri'.</msg>
-<arg>Laskuri</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-11-17T18:38:16.610541" elapsed="0.512804"/>
-</kw>
-<kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:18.151523" level="INFO">Current page contains text 'nappia painettu 0 kertaa'.</msg>
-<arg>nappia painettu 0 kertaa</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2025-11-17T18:38:17.124014" elapsed="1.027666"/>
-</kw>
-<status status="PASS" start="2025-11-17T18:38:16.080816" elapsed="2.071145"/>
+<status status="FAIL" start="2025-11-17T18:43:10.558315" elapsed="0.000523">Parent suite setup failed:
+SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102707a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102700328 chromedriver + 4358952
+2   chromedriver                        0x000000010231cafc chromedriver + 281340
+3   chromedriver                        0x0000000102350e30 chromedriver + 495152
+4   chromedriver                        0x0000000102350100 chromedriver + 491776
+5   chromedriver                        0x000000010234b670 chromedriver + 472688
+6   chromedriver                        0x00000001023485f4 chromedriver + 4...
+    [ Message content over the limit has been removed. ]
+...hromedriver                        0x00000001023548a8 chromedriver + 510120
+10  chromedriver                        0x00000001026cf3a0 chromedriver + 4158368
+11  chromedriver                        0x00000001026d3e04 chromedriver + 4177412
+12  chromedriver                        0x00000001026b5060 chromedriver + 4051040
+13  chromedriver                        0x00000001026d46f0 chromedriver + 4179696
+14  chromedriver                        0x00000001026a8060 chromedriver + 3997792
+15  chromedriver                        0x00000001026f20b8 chromedriver + 4300984
+16  chromedriver                        0x00000001026f2234 chromedriver + 4301364
+17  chromedriver                        0x00000001026fff20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8</status>
 </test>
 <test id="s1-s1-t2" name="When button pressed twice the counter is two" line="12">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:18.152888" level="INFO">Opening url 'http://localhost:5001'</msg>
-<arg>${HOME_URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-11-17T18:38:18.152699" elapsed="0.523178"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:18.677856" level="INFO">Clicking button 'Paina'.</msg>
-<arg>Paina</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-11-17T18:38:18.676588" elapsed="2.065205"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:20.742916" level="INFO">Clicking button 'Paina'.</msg>
-<arg>Paina</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-11-17T18:38:20.742425" elapsed="2.060588"/>
-</kw>
-<kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:23.831150" level="INFO">Current page contains text 'nappia painettu 2 kertaa'.</msg>
-<arg>nappia painettu 2 kertaa</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2025-11-17T18:38:22.803784" elapsed="1.027638"/>
-</kw>
-<status status="PASS" start="2025-11-17T18:38:18.152276" elapsed="5.679682"/>
+<status status="FAIL" start="2025-11-17T18:43:10.559090" elapsed="0.000177">Parent suite setup failed:
+SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102707a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102700328 chromedriver + 4358952
+2   chromedriver                        0x000000010231cafc chromedriver + 281340
+3   chromedriver                        0x0000000102350e30 chromedriver + 495152
+4   chromedriver                        0x0000000102350100 chromedriver + 491776
+5   chromedriver                        0x000000010234b670 chromedriver + 472688
+6   chromedriver                        0x00000001023485f4 chromedriver + 4...
+    [ Message content over the limit has been removed. ]
+...hromedriver                        0x00000001023548a8 chromedriver + 510120
+10  chromedriver                        0x00000001026cf3a0 chromedriver + 4158368
+11  chromedriver                        0x00000001026d3e04 chromedriver + 4177412
+12  chromedriver                        0x00000001026b5060 chromedriver + 4051040
+13  chromedriver                        0x00000001026d46f0 chromedriver + 4179696
+14  chromedriver                        0x00000001026a8060 chromedriver + 3997792
+15  chromedriver                        0x00000001026f20b8 chromedriver + 4300984
+16  chromedriver                        0x00000001026f2234 chromedriver + 4301364
+17  chromedriver                        0x00000001026fff20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8</status>
 </test>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-11-17T18:38:23.833340" elapsed="0.736729"/>
+<status status="PASS" start="2025-11-17T18:43:10.559698" elapsed="0.000154"/>
 </kw>
-<status status="PASS" start="2025-11-17T18:38:15.029456" elapsed="9.540690"/>
+<status status="FAIL" start="2025-11-17T18:43:08.217523" elapsed="2.342358">Suite setup failed:
+SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102707a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102700328 chromedriver + 4358952
+2   chromedriver                        0x000000010231cafc chromedriver + 281340
+3   chromedriver                        0x0000000102350e30 chromedriver + 495152
+4   chromedriver                        0x0000000102350100 chromedriver + 491776
+5   chromedriver                        0x000000010234b670 chromedriver + 472688
+6   chromedriver                        0x00000001023485f4 chromedriver + 4...
+    [ Message content over the limit has been removed. ]
+...hromedriver                        0x00000001023548a8 chromedriver + 510120
+10  chromedriver                        0x00000001026cf3a0 chromedriver + 4158368
+11  chromedriver                        0x00000001026d3e04 chromedriver + 4177412
+12  chromedriver                        0x00000001026b5060 chromedriver + 4051040
+13  chromedriver                        0x00000001026d46f0 chromedriver + 4179696
+14  chromedriver                        0x00000001026a8060 chromedriver + 3997792
+15  chromedriver                        0x00000001026f20b8 chromedriver + 4300984
+16  chromedriver                        0x00000001026f2234 chromedriver + 4301364
+17  chromedriver                        0x00000001026fff20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8</status>
 </suite>
 <suite id="s1-s2" name="Reset" source="/Users/nooa/Desktop/ohtu2025/webcounter/webcounter/src/tests/reset.robot">
 <kw name="Open And Configure Browser" owner="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-11-17T18:43:10.562053" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x10bcba850&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-11-17T18:43:10.561907" elapsed="0.000162"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--incognito</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-11-17T18:43:10.562121" elapsed="0.000057"/>
+</kw>
+<status status="PASS" start="2025-11-17T18:43:10.561775" elapsed="0.000424"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2025-11-17T18:43:10.562259" elapsed="0.000011"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--private-window</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" start="2025-11-17T18:43:10.562314" elapsed="0.000010"/>
+</kw>
+<status status="NOT RUN" start="2025-11-17T18:43:10.562218" elapsed="0.000125"/>
+</branch>
+<status status="PASS" start="2025-11-17T18:43:10.561762" elapsed="0.000604"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0.05 seconds</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2025-11-17T18:43:10.562467" elapsed="0.000105"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-11-17T18:43:10.562630" elapsed="0.000074"/>
+</kw>
+<status status="PASS" start="2025-11-17T18:43:10.562392" elapsed="0.000338"/>
+</branch>
+<branch type="ELSE">
 <kw name="Set Selenium Speed" owner="SeleniumLibrary">
 <arg>${DELAY}</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2025-11-17T18:38:24.572493" elapsed="0.000155"/>
+<status status="NOT RUN" start="2025-11-17T18:43:10.562800" elapsed="0.000013"/>
 </kw>
+<status status="NOT RUN" start="2025-11-17T18:43:10.562749" elapsed="0.000082"/>
+</branch>
+<status status="PASS" start="2025-11-17T18:43:10.562385" elapsed="0.000460"/>
+</if>
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:24.572838" level="INFO">Opening browser 'safari' to base url 'None'.</msg>
+<msg time="2025-11-17T18:43:10.563078" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<msg time="2025-11-17T18:43:10.680702" level="WARN">The chromedriver version (126.0.6478.55) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (142.0.7444.162); currently, chromedriver 142.0.7444.162 is recommended for chrome 142.*, so it is advised to delete the driver in PATH and retry</msg>
+<msg time="2025-11-17T18:43:11.117720" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg time="2025-11-17T18:43:11.118016" level="FAIL">SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102fc3a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102fbc328 chromedriver + 4358952
+2   chromedriver                        0x0000000102bd8afc chromedriver + 281340
+3   chromedriver                        0x0000000102c0ce30 chromedriver + 495152
+4   chromedriver                        0x0000000102c0c100 chromedriver + 491776
+5   chromedriver                        0x0000000102c07670 chromedriver + 472688
+6   chromedriver                        0x0000000102c045f4 chromedriver + 460276
+7   chromedriver                        0x0000000102c43a6c chromedriver + 719468
+8   chromedriver                        0x0000000102c0fed0 chromedriver + 507600
+9   chromedriver                        0x0000000102c108a8 chromedriver + 510120
+10  chromedriver                        0x0000000102f8b3a0 chromedriver + 4158368
+11  chromedriver                        0x0000000102f8fe04 chromedriver + 4177412
+12  chromedriver                        0x0000000102f71060 chromedriver + 4051040
+13  chromedriver                        0x0000000102f906f0 chromedriver + 4179696
+14  chromedriver                        0x0000000102f64060 chromedriver + 3997792
+15  chromedriver                        0x0000000102fae0b8 chromedriver + 4300984
+16  chromedriver                        0x0000000102fae234 chromedriver + 4301364
+17  chromedriver                        0x0000000102fbbf20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8
+</msg>
 <arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-11-17T18:38:24.572729" elapsed="0.895462"/>
+<status status="FAIL" start="2025-11-17T18:43:10.562940" elapsed="0.556904">SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102fc3a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102fbc328 chromedriver + 4358952
+2   chromedriver                        0x0000000102bd8afc chromedriver + 281340
+3   chromedriver                        0x0000000102c0ce30 chromedriver + 495152
+4   chromedriver                        0x0000000102c0c100 chromedriver + 491776
+5   chromedriver                        0x0000000102c07670 chromedriver + 472688
+6   chromedriver                        0x0000000102c045f4 chromedriver + 4...
+    [ Message content over the limit has been removed. ]
+...hromedriver                        0x0000000102c108a8 chromedriver + 510120
+10  chromedriver                        0x0000000102f8b3a0 chromedriver + 4158368
+11  chromedriver                        0x0000000102f8fe04 chromedriver + 4177412
+12  chromedriver                        0x0000000102f71060 chromedriver + 4051040
+13  chromedriver                        0x0000000102f906f0 chromedriver + 4179696
+14  chromedriver                        0x0000000102f64060 chromedriver + 3997792
+15  chromedriver                        0x0000000102fae0b8 chromedriver + 4300984
+16  chromedriver                        0x0000000102fae234 chromedriver + 4301364
+17  chromedriver                        0x0000000102fbbf20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8</status>
 </kw>
-<status status="PASS" start="2025-11-17T18:38:24.572369" elapsed="0.896156"/>
+<status status="FAIL" start="2025-11-17T18:43:10.561683" elapsed="0.558378">SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102fc3a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102fbc328 chromedriver + 4358952
+2   chromedriver                        0x0000000102bd8afc chromedriver + 281340
+3   chromedriver                        0x0000000102c0ce30 chromedriver + 495152
+4   chromedriver                        0x0000000102c0c100 chromedriver + 491776
+5   chromedriver                        0x0000000102c07670 chromedriver + 472688
+6   chromedriver                        0x0000000102c045f4 chromedriver + 4...
+    [ Message content over the limit has been removed. ]
+...hromedriver                        0x0000000102c108a8 chromedriver + 510120
+10  chromedriver                        0x0000000102f8b3a0 chromedriver + 4158368
+11  chromedriver                        0x0000000102f8fe04 chromedriver + 4177412
+12  chromedriver                        0x0000000102f71060 chromedriver + 4051040
+13  chromedriver                        0x0000000102f906f0 chromedriver + 4179696
+14  chromedriver                        0x0000000102f64060 chromedriver + 3997792
+15  chromedriver                        0x0000000102fae0b8 chromedriver + 4300984
+16  chromedriver                        0x0000000102fae234 chromedriver + 4301364
+17  chromedriver                        0x0000000102fbbf20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8</status>
 </kw>
 <test id="s1-s2-t1" name="When counter has a nonzero value and it is reset the value becomes zero" line="7">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:25.469533" level="INFO">Opening url 'http://localhost:5001'</msg>
-<arg>${HOME_URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-11-17T18:38:25.469355" elapsed="0.534208"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:26.004821" level="INFO">Clicking button 'Paina'.</msg>
-<arg>Paina</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-11-17T18:38:26.004151" elapsed="2.067769"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:28.073383" level="INFO">Clicking button 'Paina'.</msg>
-<arg>Paina</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-11-17T18:38:28.072879" elapsed="2.067441"/>
-</kw>
-<kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:31.170359" level="INFO">Current page contains text 'nappia painettu 4 kertaa'.</msg>
-<arg>nappia painettu 4 kertaa</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2025-11-17T18:38:30.141051" elapsed="1.029581"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:31.171617" level="INFO">Clicking button 'Nollaa'.</msg>
-<arg>Nollaa</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-11-17T18:38:31.171145" elapsed="2.066289"/>
-</kw>
-<kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2025-11-17T18:38:34.261383" level="INFO">Current page contains text 'nappia painettu 0 kertaa'.</msg>
-<arg>nappia painettu 0 kertaa</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2025-11-17T18:38:33.237981" elapsed="1.023668"/>
-</kw>
-<status status="PASS" start="2025-11-17T18:38:25.468686" elapsed="8.793458"/>
+<status status="FAIL" start="2025-11-17T18:43:11.120160" elapsed="0.000305">Parent suite setup failed:
+SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102fc3a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102fbc328 chromedriver + 4358952
+2   chromedriver                        0x0000000102bd8afc chromedriver + 281340
+3   chromedriver                        0x0000000102c0ce30 chromedriver + 495152
+4   chromedriver                        0x0000000102c0c100 chromedriver + 491776
+5   chromedriver                        0x0000000102c07670 chromedriver + 472688
+6   chromedriver                        0x0000000102c045f4 chromedriver + 4...
+    [ Message content over the limit has been removed. ]
+...hromedriver                        0x0000000102c108a8 chromedriver + 510120
+10  chromedriver                        0x0000000102f8b3a0 chromedriver + 4158368
+11  chromedriver                        0x0000000102f8fe04 chromedriver + 4177412
+12  chromedriver                        0x0000000102f71060 chromedriver + 4051040
+13  chromedriver                        0x0000000102f906f0 chromedriver + 4179696
+14  chromedriver                        0x0000000102f64060 chromedriver + 3997792
+15  chromedriver                        0x0000000102fae0b8 chromedriver + 4300984
+16  chromedriver                        0x0000000102fae234 chromedriver + 4301364
+17  chromedriver                        0x0000000102fbbf20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8</status>
 </test>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-11-17T18:38:34.263226" elapsed="0.718204"/>
+<status status="PASS" start="2025-11-17T18:43:11.120806" elapsed="0.000135"/>
 </kw>
-<status status="PASS" start="2025-11-17T18:38:24.570553" elapsed="10.411046"/>
+<status status="FAIL" start="2025-11-17T18:43:10.560250" elapsed="0.560716">Suite setup failed:
+SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 126
+Current browser version is 142.0.7444.162 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000102fc3a1c chromedriver + 4389404
+1   chromedriver                        0x0000000102fbc328 chromedriver + 4358952
+2   chromedriver                        0x0000000102bd8afc chromedriver + 281340
+3   chromedriver                        0x0000000102c0ce30 chromedriver + 495152
+4   chromedriver                        0x0000000102c0c100 chromedriver + 491776
+5   chromedriver                        0x0000000102c07670 chromedriver + 472688
+6   chromedriver                        0x0000000102c045f4 chromedriver + 4...
+    [ Message content over the limit has been removed. ]
+...hromedriver                        0x0000000102c108a8 chromedriver + 510120
+10  chromedriver                        0x0000000102f8b3a0 chromedriver + 4158368
+11  chromedriver                        0x0000000102f8fe04 chromedriver + 4177412
+12  chromedriver                        0x0000000102f71060 chromedriver + 4051040
+13  chromedriver                        0x0000000102f906f0 chromedriver + 4179696
+14  chromedriver                        0x0000000102f64060 chromedriver + 3997792
+15  chromedriver                        0x0000000102fae0b8 chromedriver + 4300984
+16  chromedriver                        0x0000000102fae234 chromedriver + 4301364
+17  chromedriver                        0x0000000102fbbf20 chromedriver + 4357920
+18  libsystem_pthread.dylib             0x00000001860f0c08 _pthread_start + 136
+19  libsystem_pthread.dylib             0x00000001860ebba8 thread_start + 8</status>
 </suite>
-<status status="PASS" start="2025-11-17T18:38:15.012020" elapsed="19.971166"/>
+<status status="FAIL" start="2025-11-17T18:43:08.202436" elapsed="2.918864"/>
 </suite>
 <statistics>
 <total>
-<stat pass="3" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="3" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Tests" id="s1" pass="3" fail="0" skip="0">Tests</stat>
-<stat name="Increment" id="s1-s1" pass="2" fail="0" skip="0">Tests.Increment</stat>
-<stat name="Reset" id="s1-s2" pass="1" fail="0" skip="0">Tests.Reset</stat>
+<stat name="Tests" id="s1" pass="0" fail="3" skip="0">Tests</stat>
+<stat name="Increment" id="s1-s1" pass="0" fail="2" skip="0">Tests.Increment</stat>
+<stat name="Reset" id="s1-s2" pass="0" fail="1" skip="0">Tests.Reset</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2025-11-17T18:43:09.032075" level="WARN">The chromedriver version (126.0.6478.55) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (142.0.7444.162); currently, chromedriver 142.0.7444.162 is recommended for chrome 142.*, so it is advised to delete the driver in PATH and retry</msg>
+<msg time="2025-11-17T18:43:10.680702" level="WARN">The chromedriver version (126.0.6478.55) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (142.0.7444.162); currently, chromedriver 142.0.7444.162 is recommended for chrome 142.*, so it is advised to delete the driver in PATH and retry</msg>
 </errors>
 </robot>

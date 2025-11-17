@@ -14,3 +14,6 @@ class Counter:
 
     def reset(self):
         self.value = 0
+    
+    def set_value(self, new_value):
+        self.value = new_value
